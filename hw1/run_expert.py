@@ -68,6 +68,19 @@ def main():
         expert_data = {'observations': np.array(observations),
                        'actions': np.array(actions)}
 
+        dirname = os.path.dirname(__file__)
+
+        # Directories that are going to be used later
+        if not os.path.exists(os.path.join(dirname, 'expert_data')):
+            os.mkdir(os.path.join(dirname, 'expert_data'))
+        if not os.path.exists(os.path.join(dirname, 'figures')):
+            os.mkdir(os.path.join(dirname, 'figures'))
+        if not os.path.exists(os.path.join(dirname, 'behavioral_cloning')):
+            os.mkdir(os.path.join(dirname, 'behavioral_cloning'))
+        if not os.path.exists(os.path.join(dirname, 'model')):
+            os.mkdir(os.path.join(dirname, 'model'))
+
+
         with open(os.path.join('expert_data', args.envname + '.pkl'), 'wb') as f:
             pickle.dump(expert_data, f, pickle.HIGHEST_PROTOCOL)
 
