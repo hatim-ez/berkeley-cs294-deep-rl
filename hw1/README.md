@@ -1,5 +1,18 @@
 # CS294-112 HW 1: Imitation Learning
 
+### Getting started
+
+* run **python run_behavioral_cloning.py "HalfCheetah-v2,Humanoid-v2"** to train a behavioral cloning model on expert data (need to run run_expert.py) for specified environments,
+ then run rollouts to generate results and put them in */figures/results_of_behavioral_cloning.html*. 
+ Other options include *--max_timesteps*, *--num_rollouts* (set to 20 by default), *render*.
+ 
+ * run **python plot_behavioral_cloning.py** to generate file *figures/Q2.3.png* that plots the evolution of the mean reward according to the number of epochs in training.
+ 
+ * run **python run_dagger.py experts/HalfCheetah-v2.pkl HalfCheetah-v2 \
+        --dagger_iter 20 --render --num_rollouts 20** to run DAgger implementation and print results to *figures/DAgger_output.txt*.
+        
+ * run **python plot_dagger.py** to generate graph representing the evolution of the mean reward and standard deviation according to the number of DAgger iterations for a Humanoid-v2 environment.
+
 Dependencies:
  * Python **3.5**
  * Numpy version **1.14.5**
@@ -25,3 +38,9 @@ In `experts/`, the provided expert policies are:
 * Walker2d-v2.pkl
 
 The name of the pickle file corresponds to the name of the gym environment.
+
+#### Authors
+
+* **Hatim Ezbakhe** - 
+* *Jonathan Ho* - Project base: https://github.com/berkeleydeeprlcourse/homework
+
