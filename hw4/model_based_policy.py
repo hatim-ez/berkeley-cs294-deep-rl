@@ -168,7 +168,7 @@ class ModelBasedPolicy(object):
             noise = 1/100
             n_best_to_keep = self._num_random_action_selection//100
             epsilon = 1
-            max_iter = 50
+            max_iter = 10
 
             costs = tf.zeros([self._num_random_action_selection])
             states = tf.concat([state_ph for i in range(self._num_random_action_selection)], axis=0)
@@ -199,7 +199,7 @@ class ModelBasedPolicy(object):
                 )[0:n_best_to_keep]
 
 
-                mu, sigma = tf.nn.moments(tf.gather(params=random_action_sequences, indices=indices_to_keep, axis=0)[:,0,:], axes=0)
+                mu, sigma = tf.nn.moments(tf.gather(params=random_action_sequences, indices=indices_to_keep, axis=0)[:,0,:], axes=0) #, name="moments")
 
                 print('Cross Entropy Method update {0}.'.format(i))
 
@@ -299,6 +299,9 @@ class ModelBasedPolicy(object):
         ### PROBLEM 2
         ### YOUR CODE HERE
         best_action = self._sess.run(self._best_action, feed_dict={self._state_ph: [state]})
+        # mu = [var for var in tf.global_variables() if var.op.name=="moments_24/Squeeze:0"][0]
+        # sigma = [var for var in tf.global_variables() if var.op.name=="moments_24/Squeeze_1:0"][0]
+        # print("Actions mean: {0} \n and std: {1}".format(mu, sigma))
 
         assert np.shape(best_action) == (self._action_dim,)
         return best_action

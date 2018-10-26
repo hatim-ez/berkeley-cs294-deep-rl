@@ -37,11 +37,11 @@ mbrl = ModelBasedRL(env=env,
                     num_random_action_selection=args.num_random_action_selection,
                     nn_layers=args.nn_layers,
                     CEM=args.CEM)
-random.seed(2)
+
 run_func = {
     'q1': mbrl.run_q1,
     'q2': mbrl.run_q2,
     'q3': mbrl.run_q3,
-    'q4': mbrl.run_q2
+    'q4': mbrl.run_q3
 }[args.question]
 run_func()
